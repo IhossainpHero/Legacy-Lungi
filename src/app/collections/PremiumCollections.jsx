@@ -1,30 +1,41 @@
-import dbConnect from "@/lib/dbConnect";
+"use client";
+
+import Spinner from "@/components/Spinner";
+import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 
-const PremiumCollections = async () => {
-  // Connect to DB
-  const collection = await dbConnect("all-products");
+export default function PremiumCollections() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  // Fetch only existing products
-  const data = await collection
-    .find({ category: "Premium Collections" })
-    .toArray();
+  const fetchProducts = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/all-products?category=Premium Collections");
+      const data = await res.json();
+      setProducts(data);
+    } catch (err) {
+      console.error(err);
+    }
+    setLoading(false);
+  };
 
-  const safeData = data?.map((item) => ({
-    ...item,
-    _id: item._id.toString(),
-  }));
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   return (
     <div className="my-10">
       <h2 className="text-2xl font-bold mb-6">Premium Collections</h2>
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {safeData?.map((item) => (
-          <ProductCard key={item._id} product={item} />
-        ))}
-      </div>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {products.map((item) => (
+            <ProductCard key={item._id} product={item} />
+          ))}
+        </div>
+      )}
     </div>
   );
-};
-
-export default PremiumCollections;
+}
