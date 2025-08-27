@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -25,18 +24,22 @@ export default function ContactUs() {
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold">Get in Touch</h2>
           <p className="text-gray-700">
-            We would love to hear from you! Reach out to us for support, inquiries, or feedback.
+            We would love to hear from you! Reach out to us for support,
+            inquiries, or feedback.
           </p>
-          <p className="text-gray-700"><strong>Email:</strong> support@shopease.com</p>
-          <p className="text-gray-700"><strong>Phone:</strong> +880 1234 567890</p>
-          <p className="text-gray-700"><strong>Address:</strong> 123 Shopping St, Dhaka, Bangladesh</p>
+          <p className="text-gray-700">
+            <strong>Email:</strong> imran.hossainp952@gmail.com
+          </p>
+          <p className="text-gray-700">
+            <strong>Phone:</strong> 01916660952
+          </p>
+          <p className="text-gray-700">
+            <strong>Address:</strong> Gopalpur-6740,Enayetpur,Sirajganj
+          </p>
         </div>
 
         {/* Contact Form */}
-        <form
-          className="flex flex-col gap-4"
-          onSubmit={handleSubmit}
-        >
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <input
             type="text"
             name="name"

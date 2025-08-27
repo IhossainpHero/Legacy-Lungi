@@ -62,14 +62,14 @@ export default function Navbar() {
           >
             PRODUCTS
           </Link>
-          <Link
+          {/* <Link
             href="/about"
             className={`px-3 py-2 rounded-md transition-colors duration-300 ${
               pathname === "/about" ? "bg-[#0d5967]" : "hover:bg-[#0a4a55]"
             }`}
           >
             ABOUT US
-          </Link>
+          </Link> */}
           <Link
             href="/contact"
             className={`px-3 py-2 rounded-md transition-colors duration-300 ${
